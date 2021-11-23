@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ControleOperadoresCaixas</title>
+	<style>
+		table
+		{
+			text-align: center;
+			border-collapse: collapse;
+		}
+		td,th
+		{
+			border: solid 1px black;
+		}
+	</style>
+</head>
+<body>
+	<form method = "POST">
+		<label for = "employeePosition">Cargo do funcionario que deseja adicionar na tabela</label>
+		<br>
+			<button id = "employeePosition" name = "employeePositionButton" value = "operador">OPERADOR</button>
+			<button id = "employeePosition" name = "employeePositionButton" value = "empacotador">EMPACOTADOR</button>
+			<button id = "employeePosition" name = "employeePositionButton" value = "carrinho"> CARRINHO</button>
+		<br>
+			<?php
+			session_start();
+				if(isset ($_SESSION["employeePosition"]) || isset($_POST["employeePositionButton"]))
+				{
+					if (isset ($_SESSION["employeePosition"]))
+					{
+						$employeePosition = $_SESSION["employeePosition"];
+					}
+					else
+					{
+						$employeePosition = $_POST["employeePositionButton"];
+						$_SESSION["employeePosition"] = $_POST["employeePositionButton"];
+					}
+					function getView($view)
+					{
+						require_once("formShift".".phtml");
+						require_once($view.".phtml");
+					}
+					switch($employeePosition)
+					{
+						case "operador":
+								getView("formCashier");
+						break;
+						case "empacotador":
+								getView("formCashier");
+						break;
+						case "carrinho":
+								getView("formCashier");
+						break;
+					}	
+				}
+			 ?>
+		<br>
+		<button name = "putInTableButton"value = "1">CADASTRAR</button>
+		</br>
+		<button name = "showTableButton">GERAR TABELA</button>
+	</form>
+</body>
+</html>
+<?php
+ 	define("HOST","mysql:host=localhost;dbname=db_employee");
+	define("USER","root");
+	define("PASSWORD","");
+	$conn = new PDO(HOST,USER,PASSWORD);
+	if ($_SERVER["REQUEST_METHOD"] === "POST")
+	{
+		if (isset($_POST["putInTableButton"]))
+		{
+			$idEmployee = $_POST["idEmployeeInput"];
+			$nameEmployee = $_POST['nameEmployeeInput'];
+			$employeePosition	= $_SESSION["employeePosition"];
+			$query = "UPDATE tb_cashier SET employee_name = :NAMEEMPLOYEE WHERE employee_id = :ID";
+			$stmt = $conn->prepare($query);
+
+			function BindParam($stmt,$name,$value)
+			{
+				return $stmt->bindParam($name,$value);
+			}
+			function bindParams($bindParam = array())
+			{
+				global $stmt;
+				foreach ($bindParam as $name => $value)
+				{
+					bindParam($stmt,$name,$value);
+				}
+			}
+			bindParams(array(
+					":ID" =>$idEmployee,
+					":NAMEEMPLOYEE" =>$nameEmployee
+			));
+			if ($stmt->execute())
+			{
+				echo "O ".$employeePosition.": ".$nameEmployee."<br>";
+				echo "Foi colocado no caixa ".$idEmployee."<br>";
+			}
+		}
+		if(isset($_POST["showTableButton"]))
+		{
+				$stmt = $conn->prepare("SELECT * FROM tb_cashier");
+				$stmt->execute();
+				$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				echo "<table>";
+				echo "
+					<tr>
+							<th>NUMERO DO CAIXA</th>
+							<th>NOME DO OPERADOR</th>
+					</tr>";
+				foreach($results as $key => $value)
+				{
+					echo "<tr>";
+					echo "<td>".$value["employee_id"]."</td>";
+					echo "<td>".$value["employee_name"]."</td>";
+					echo "</tr>";
+				}
+				echo "</table>";
+		}
+	}
+?>

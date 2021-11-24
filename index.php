@@ -65,27 +65,25 @@
 </html>
 <?php
 	use App\Connection;
+	use App\Models\Operador;
 	require "vendor/autoload.php";
-	$conn = new Connection();
+	$conn = new Connection;
 	$cont = 0;
 	if(isset($_POST["showTableButton"]))
 		{
-			$results = $conn->showTable("SELECT * FROM tb_cashier");
+			$teste = new Operador;
+			$results = Operador::getTable();
 			echo "<table>";
 			echo "
 				<tr>
-						<th>ID</th>
 						<th>TURNO</th>
-						<th>NUMERO DO CAIXA</th>
-						<th>NOME DO OPERADOR</th>
+						<th coldspan = 2>NUMERO DO CAIXA E NOME DO OPERADOR</th>
 				</tr>";
 			foreach($results as $key => $value)
 			{
 				echo "<tr>";
-				echo "<td>".$value["cl_id"]."</td>";
 				echo "<td>".$value["cl_horario"]."</td>";
-				echo "<td>".$value["cl_numerocaixa"]."</td>";
-				echo "<td>".$value["cl_nome"]."</td>";
+				echo "<td> Caixa - ".$value["cl_numerocaixa"]." - Op: ".$value["cl_nome"]."</td>";
 				echo "</tr>";
 			}
 			echo "</table>";

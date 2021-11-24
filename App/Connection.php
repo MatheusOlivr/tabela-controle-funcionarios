@@ -2,28 +2,26 @@
 	namespace App; 
 	Class Connection
 	{
-		protected $conn;
-		public function __construct()
+		protected $host;
+		protected $user;
+		protected $password;
+		public static function getDb()
 		{
-			define("HOST","mysql:host=localhost;dbname=db_employee");
-			define("USER","root");
-			define("PASSWORD","");
-			$conn = new \PDO(HOST,USER,PASSWORD);
-			$this->conn = $conn;
-		}
-		public function getDb()
-		{
-			return $this->conn;
+			$host = "mysql:host=localhost;dbname=db_employee";
+			$user = "root";
+			$password = "";
+			$conn = new \PDO($host,$user,$password);
+			return $conn;
 		}
 		public function insertInTable($query,$bindParam = null)
 		{
-			$stmt = $this->conn->prepare($query);
+			$stmt = Connection::getDb()->prepare($query);
 			$this->bindParams($stmt,$bindParam);	
 			$stmt->execute();
 		}
-		public function showTable($query)
+		public static function showTable($query)
 		{
-			$stmt = $this->conn->prepare($query);
+			$stmt = Connection::getDb()->prepare($query);
 			$stmt->execute();
 			$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			return $results;

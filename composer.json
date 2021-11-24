@@ -1,15 +1,10 @@
 {
-    "name": "matheus/tabela-controle-caixas",
+    "name": "matheusolivr/tabela-controle-funcionario",
     "autoload": {
         "psr-4": {
-            "Matheus\\TabelaControleCaixas\\": "src/"
+            "Matheusolivr\\TabelaControleFuncionario\\": "src/",
+            "App\\":"App/"
         }
     },
-    "authors": [
-        {
-            "name": "MatheusOlivr",
-            "email": "contato.matheusoliv@gmail.com"
-        }
-    ],
     "require": {}
 }

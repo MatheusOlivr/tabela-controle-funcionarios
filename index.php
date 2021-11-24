@@ -64,61 +64,53 @@
 </body>
 </html>
 <?php
- 	define("HOST","mysql:host=localhost;dbname=db_employee");
-	define("USER","root");
-	define("PASSWORD","");
-	$conn = new PDO(HOST,USER,PASSWORD);
-	if ($_SERVER["REQUEST_METHOD"] === "POST")
-	{
-		if (isset($_POST["putInTableButton"]))
+	use App\Connection;
+	require "vendor/autoload.php";
+	$conn = new Connection();
+	$cont = 0;
+	if(isset($_POST["showTableButton"]))
 		{
+			$results = $conn->showTable("SELECT * FROM tb_cashier");
+			echo "<table>";
+			echo "
+				<tr>
+						<th>ID</th>
+						<th>TURNO</th>
+						<th>NUMERO DO CAIXA</th>
+						<th>NOME DO OPERADOR</th>
+				</tr>";
+			foreach($results as $key => $value)
+			{
+				echo "<tr>";
+				echo "<td>".$value["cl_id"]."</td>";
+				echo "<td>".$value["cl_horario"]."</td>";
+				echo "<td>".$value["cl_numerocaixa"]."</td>";
+				echo "<td>".$value["cl_nome"]."</td>";
+				echo "</tr>";
+			}
+			echo "</table>";
+		}	
+	if ($_SERVER["REQUEST_METHOD"] === "POST")
+		{
+		if (isset($_POST["putInTableButton"]))
+			{
 			$idEmployee = $_POST["idEmployeeInput"];
 			$nameEmployee = $_POST['nameEmployeeInput'];
 			$employeePosition	= $_SESSION["employeePosition"];
-			$query = "UPDATE tb_cashier SET employee_name = :NAMEEMPLOYEE WHERE employee_id = :ID";
-			$stmt = $conn->prepare($query);
-
-			function BindParam($stmt,$name,$value)
-			{
-				return $stmt->bindParam($name,$value);
-			}
-			function bindParams($bindParam = array())
-			{
-				global $stmt;
-				foreach ($bindParam as $name => $value)
-				{
-					bindParam($stmt,$name,$value);
-				}
-			}
-			bindParams(array(
-					":ID" =>$idEmployee,
-					":NAMEEMPLOYEE" =>$nameEmployee
-			));
-			if ($stmt->execute())
+			$turno = $_POST["shiftSelect"];
+			$conn->insertInTable("UPDATE tb_cashier SET cl_nome = :CLNOME,cl_numerocaixa =:CLNUMEROCAIXA,cl_horario = :CLTURNO WHERE cl_id = :CLID",array
+				(
+					":CLNUMEROCAIXA" => $idEmployee,
+					":CLNOME" => $nameEmployee,
+					":CLTURNO" => $turno,
+					":CLID" => $idEmployee
+				));
+			echo "deu certo";
+			/*/if (
 			{
 				echo "O ".$employeePosition.": ".$nameEmployee."<br>";
 				echo "Foi colocado no caixa ".$idEmployee."<br>";
-			}
-		}
-		if(isset($_POST["showTableButton"]))
-		{
-				$stmt = $conn->prepare("SELECT * FROM tb_cashier");
-				$stmt->execute();
-				$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				echo "<table>";
-				echo "
-					<tr>
-							<th>NUMERO DO CAIXA</th>
-							<th>NOME DO OPERADOR</th>
-					</tr>";
-				foreach($results as $key => $value)
-				{
-					echo "<tr>";
-					echo "<td>".$value["employee_id"]."</td>";
-					echo "<td>".$value["employee_name"]."</td>";
-					echo "</tr>";
-				}
-				echo "</table>";
+			}*/
 		}
 	}
 ?>

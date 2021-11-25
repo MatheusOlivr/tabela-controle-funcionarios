@@ -3,12 +3,13 @@
 	use App\Connection;
 	class Cashier extends Connection
 	{
-		public static function addEmployee($cl_horario,$cl_nome)
+		public static function addEmployee($cl_horario,$cl_numerocaixa,$cl_nome)
 		{
-			Connection::insertInTable("INSERT INTO tb_cashier (cl_horario,cl_nome) VALUES(:CLHORARIO,:CLNOME)",
+			Connection::insertInTable("INSERT INTO tb_cashier (cl_horario,cl_numerocaixa,cl_nome) VALUES(:CLHORARIO,:CLNUMEROCAIXA,:CLNOME)",
 				array
 				(
 					":CLHORARIO" =>$cl_horario,
+					":CLNUMEROCAIXA" => $cl_numerocaixa,
 					":CLNOME" =>$cl_nome
 				));
 		}

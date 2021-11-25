@@ -85,6 +85,7 @@
 <?php
 	use App\Connection;
 	use App\Controllers\TableController;
+	use App\Models\Cashier;
 	require "vendor/autoload.php";
 	$conn = new Connection;
 	$cont = 0;
@@ -101,6 +102,7 @@
 			$nameEmployee = $_POST['nameEmployeeInput'];
 			$employeePosition	= $_SESSION["employeePosition"];
 			$turno = $_POST["shiftSelect"];
+			Cashier::addEmployee($turno,$idEmployee,$nameEmployee);
 			echo "deu certo";
 			/*/if (
 			{

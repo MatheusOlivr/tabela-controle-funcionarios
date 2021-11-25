@@ -5,14 +5,33 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ControleOperadoresCaixas</title>
 	<style>
-		table
+		#joinTables
 		{
+			width: 50vw;
+			border: 1px solid black;
 			text-align: center;
 			border-collapse: collapse;
+			border: solid 1px black;
+		}
+		table
+		{
+			width: 25vw;
+			float: left;
+		}
+		#morningTable
+		{
+
+		}
+		#eveningTable
+		{
 		}
 		td,th
 		{
-			border: solid 1px black;
+			
+		}
+		#clean
+		{
+			clear: both;
 		}
 	</style>
 </head>
@@ -65,28 +84,14 @@
 </html>
 <?php
 	use App\Connection;
-	use App\Models\Cashier;
+	use App\Controllers\TableController;
 	require "vendor/autoload.php";
 	$conn = new Connection;
 	$cont = 0;
 	if(isset($_POST["showTableButton"]))
 		{
-			$teste = new Cashier;
-			$results = Cashier::getTable("evening");
-			echo "<table>";
-			echo "
-				<tr>
-						<th>TURNO</th>
-						<th coldspan = 2>NUMERO DO CAIXA E NOME DO OPERADOR</th>
-				</tr>";
-			foreach($results as $key => $value)
-			{
-				echo "<tr>";
-				echo "<td>".$value["cl_horario"]."</td>";
-				echo "<td> Caixa - ".$value["cl_numerocaixa"]." - Op: ".$value["cl_nome"]."</td>";
-				echo "</tr>";
-			}
-			echo "</table>";
+			$new = new TableController();
+			$new->joinTables();
 		}	
 	if ($_SERVER["REQUEST_METHOD"] === "POST")
 		{
@@ -112,3 +117,13 @@
 		}
 	}
 ?>
+<div id = "joinTables">
+	<h3>PLANILHA DO DIA</h3>
+	<?php TableController::cashierTables()?>
+	<div id = clean></div>
+	<h4>OPERADORES</h4>	
+	<div id = clean></div>
+	<h4>EMPACOTADORES</h4>
+	<div id = clean></div>
+	<h4>CARRINHOS</h4>
+</div>

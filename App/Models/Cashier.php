@@ -22,7 +22,6 @@
 					return $between;
 				break;
 			}
-			return $shift;
 		}
 		public static function getTable($shift = 0)
 		{

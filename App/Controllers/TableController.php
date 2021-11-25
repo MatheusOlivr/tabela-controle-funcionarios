@@ -5,8 +5,8 @@
 	{
 		public static function cashierTables()
 		{
-			$cashierTableMorning = Cashier::getTable("morning");
-			$cashierTableEvening = Cashier::getTable("evening");
+			$cashierTableMorning = Cashier::getTable("06:00","12:00");
+			$cashierTableEvening = Cashier::getTable("13:00","22:00");
 			echo "<table>";
 			echo "<tr ><th colspan = '2'>MANHÂ:</th></tr>";
 			foreach($cashierTableMorning as $key => $value)

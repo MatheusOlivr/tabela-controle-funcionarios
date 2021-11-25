@@ -3,29 +3,22 @@
 	use App\Connection;
 	class Cashier extends Connection
 	{
-		protected static function getShift($shift)
+		public static function addEmployee($cl_horario,$cl_nome)
 		{
-			switch($shift)
-			{
-				case "morning":
-					$between = [
-						":VALUE1" => "06:00",
-						":VALUE2" => "12:00"
-					];
-					return $between;
-				break;
-				case "evening":
-					$between = [
-						":VALUE1" => "13:00",
-						":VALUE2" => "22:00"
-					];
-					return $between;
-				break;
-			}
+			Connection::insertInTable("INSERT INTO tb_cashier (cl_horario,cl_nome) VALUES(:CLHORARIO,:CLNOME)",
+				array
+				(
+					":CLHORARIO" =>$cl_horario,
+					":CLNOME" =>$cl_nome
+				));
 		}
-		public static function getTable($shift = 0)
+		public static function getTable($value1,$value2)
 		{
-			$results = Connection::showTable("SELECT cl_horario,cl_numerocaixa,cl_nome FROM tb_cashier WHERE cl_horario BETWEEN :VALUE1 AND :VALUE2 ",Cashier::getShift($shift));
+			$shift = array(
+				":VALUE1" =>$value1,
+				":VALUE2" =>$value2
+			);
+			$results = Connection::showTable("SELECT cl_horario,cl_numerocaixa,cl_nome FROM tb_cashier WHERE cl_horario BETWEEN :VALUE1 AND :VALUE2 ",$shift);
 			return $results;
 		}
 	}

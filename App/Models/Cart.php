@@ -1,11 +1,11 @@
 <?php 
 	namespace App\Models;
 	use App\Connection;
-	class Packer extends Connection
+	class Cart extends Connection
 	{
 		public static function addEmployee($cl_horario,$cl_nome)
 		{
-			Connection::insertInTable("INSERT INTO tb_packer (cl_horario,cl_nome) VALUES(:CLHORARIO,:CLNOME)",
+			Connection::insertInTable("INSERT INTO tb_cart (cl_horario,cl_nome) VALUES(:CLHORARIO,:CLNOME)",
 				array
 				(
 					":CLHORARIO" =>$cl_horario,
@@ -18,7 +18,7 @@
 				":VALUE1" =>$value1,
 				":VALUE2" =>$value2
 			);
-			$results = Connection::showTable("SELECT cl_horario,cl_nome FROM tb_packer WHERE cl_horario BETWEEN :VALUE1 AND :VALUE2 ",$shift);
+			$results = Connection::showTable("SELECT cl_horario,cl_nome FROM tb_cart WHERE cl_horario BETWEEN :VALUE1 AND :VALUE2 ",$shift);
 			return $results;
 		}
 	}

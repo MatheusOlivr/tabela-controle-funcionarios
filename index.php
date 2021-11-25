@@ -58,8 +58,8 @@
 					}
 					function getView($view)
 					{
-						require_once("formShift".".phtml");
-						require_once($view.".phtml");
+						require_once("App/Views/Forms/formShift".".phtml");
+						require_once("App/Views/Forms/".$view.".phtml");
 					}
 					switch($employeePosition)
 					{
@@ -101,13 +101,6 @@
 			$nameEmployee = $_POST['nameEmployeeInput'];
 			$employeePosition	= $_SESSION["employeePosition"];
 			$turno = $_POST["shiftSelect"];
-			$conn->insertInTable("UPDATE tb_cashier SET cl_nome = :CLNOME,cl_numerocaixa =:CLNUMEROCAIXA,cl_horario = :CLTURNO WHERE cl_id = :CLID",array
-				(
-					":CLNUMEROCAIXA" => $idEmployee,
-					":CLNOME" => $nameEmployee,
-					":CLTURNO" => $turno,
-					":CLID" => $idEmployee
-				));
 			echo "deu certo";
 			/*/if (
 			{

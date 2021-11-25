@@ -65,14 +65,14 @@
 </html>
 <?php
 	use App\Connection;
-	use App\Models\Operador;
+	use App\Models\Cashier;
 	require "vendor/autoload.php";
 	$conn = new Connection;
 	$cont = 0;
 	if(isset($_POST["showTableButton"]))
 		{
-			$teste = new Operador;
-			$results = Operador::getTable();
+			$teste = new Cashier;
+			$results = Cashier::getTable("evening");
 			echo "<table>";
 			echo "
 				<tr>

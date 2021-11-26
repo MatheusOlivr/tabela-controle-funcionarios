@@ -2,9 +2,19 @@
 	namespace App\Controllers;
 	class ViewsController
 	{
-		public function __construct($view)
+		public static function getView($view,$viewForm)
 		{
-			require_once("..\\App\\Views\\Forms\\".$view.".phtml");
+			$header = "header";
+			$content = "content";
+			$footer = "footer";
+			$formShift = "Forms\\formShift";
+			$viewForm = "Forms\\".$viewForm;
+			$dir = "..\\App\\Views\\";
+			require_once($dir.$header.".phtml");
+			require_once($dir.$content.".phtml");
+			require_once($dir.$formShift.".phtml");
+			require_once($dir.$viewForm.".phtml");
+			require_once($dir.$footer.".phtml");
 		}
 	}
 ?>

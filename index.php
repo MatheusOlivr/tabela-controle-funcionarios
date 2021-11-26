@@ -36,13 +36,6 @@
 	</style>
 </head>
 <body>
-	<form method = "POST">
-		<label for = "employeePosition">Cargo do funcionario que deseja adicionar na tabela</label>
-		<br>
-			<button id = "employeePosition" name = "employeePositionButton" value = "operador">OPERADOR</button>
-			<button id = "employeePosition" name = "employeePositionButton" value = "empacotador">EMPACOTADOR</button>
-			<button id = "employeePosition" name = "employeePositionButton" value = "carrinho"> CARRINHO</button>
-		<br>
 			<?php
 			session_start();
 				if(isset ($_SESSION["employeePosition"]) || isset($_POST["employeePositionButton"]))

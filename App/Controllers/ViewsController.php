@@ -2,19 +2,24 @@
 	namespace App\Controllers;
 	class ViewsController
 	{
-		public static function getView($viewForm)
+		public static function getView($formView)
 		{
 			$header = "header";
 			$content = "content";
+			$formHeader = "formheader";
+			$formShift = "formShift";
+			$formView = $formView;
+			$formFooter = "formfooter";
 			$footer = "footer";
-			$formShift = "Forms\\formShift";
-			$viewForm = "Forms\\".$viewForm;
-			$dir = "..\\App\\Views\\";
-			require_once($dir.$header.".phtml");
-			require_once($dir.$content.".phtml");
-			require_once($dir.$formShift.".phtml");
-			require_once($dir.$viewForm.".phtml");
-			require_once($dir.$footer.".phtml");
+			$dirViewsMain = "..\\App\\Views\\";
+			$dirViewsForm = "..\\App\\Views\\Forms\\";
+			require_once($dirViewsMain.$header.".phtml");
+			require_once($dirViewsMain.$content.".phtml");
+			require_once($dirViewsForm.$formHeader.".phtml");
+			require_once($dirViewsForm.$formShift.".phtml");
+			require_once($dirViewsForm.$formView.".phtml");
+			require_once($dirViewsForm.$formFooter.".phtml");
+			require_once($dirViewsMain.$footer.".phtml");
 		}
 	}
 ?>

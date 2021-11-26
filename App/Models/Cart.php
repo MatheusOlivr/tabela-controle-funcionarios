@@ -5,7 +5,7 @@
 	{
 		public static function addEmployee($cl_horario,$cl_nome)
 		{
-			Connection::insertInTable("INSERT INTO tb_cart (cl_horario,cl_nome) VALUES(:CLHORARIO,:CLNOME)",
+			Connection::insertInTable("UPDATE tb_cart SET cl_horario =  :CLHORARIO ,cl_nome =:CLNOME)",
 				array
 				(
 					":CLHORARIO" =>$cl_horario,

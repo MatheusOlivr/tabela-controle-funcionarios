@@ -2,7 +2,7 @@
 	namespace App\Controllers;
 	class ViewsController
 	{
-		public static function getView($view,$viewForm)
+		public static function getView($viewForm)
 		{
 			$header = "header";
 			$content = "content";

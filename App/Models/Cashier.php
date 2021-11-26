@@ -5,7 +5,7 @@
 	{
 		public static function addEmployee($cl_horario,$cl_numerocaixa,$cl_nome)
 		{
-			Connection::insertInTable("INSERT INTO tb_cashier (cl_horario,cl_numerocaixa,cl_nome) VALUES(:CLHORARIO,:CLNUMEROCAIXA,:CLNOME)",
+			Connection::insertInTable("UPDATE tb_cashier FROM cl_horario = :CLHORARIO, cl_numerocaixa = CLNUMEROCAIXA,cl_nome = :CLNOME",
 				array
 				(
 					":CLHORARIO" =>$cl_horario,

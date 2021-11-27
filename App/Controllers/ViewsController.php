@@ -28,7 +28,7 @@
 			require_once($dirViewsForm.$formHeader.".phtml");
 			$dirViewsTable = "..\\App\\Views\\Table\\";
 			require_once($dirViewsTable."tableHeader.phtml");
-			TableController::cashierTables();
+			TableController::showJoinTables();
 			require_once($dirViewsTable."tableFooter.phtml");
 
 		}

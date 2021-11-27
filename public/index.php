@@ -42,17 +42,7 @@ $app->get('/tabela', function (Request $req,  Response $res, $args = []) {
     ViewsController::gettable();
 });
 $app->get('/teste', function (Request $req,  Response $res, $args = []) {
-    Cashier::showTableMorning();
-    echo "<hr>";
-    Cashier::showTableEvening();
-    echo "<hr>";
-    Cart::showTableMorning();
-    echo "<hr>";
-    Cart::showTableEvening();
-    echo "<hr>";
-    Packer::showTableMorning();
-    echo "<hr>";
-    Packer::showTableEvening();
+    ViewsController::getTable();
 });
 $app->run();
 

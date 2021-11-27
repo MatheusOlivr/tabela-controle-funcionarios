@@ -22,5 +22,31 @@
 			$results = Connection::showTable("SELECT cl_horario,cl_numerocaixa,cl_nome FROM tb_cashier WHERE cl_horario BETWEEN :VALUE1 AND :VALUE2 ",$shift);
 			return $results;
 		}
+		public static function showTableMorning()
+		{
+			$cashierTableMorning = Cashier::getTable("06:00","12:00");
+			echo "<table>";
+			foreach($cashierTableMorning as $key => $value)
+			{
+				echo "<tr>";
+				echo "<td>".$value["cl_horario"]."</td>";
+				echo "<td> Caixa - ".$value["cl_numerocaixa"]." - ".$value["cl_nome"]."</td>";
+				echo "</tr>";
+			}
+			echo "</table>";
+		}
+		public static function showTableEvening()
+		{
+			$cashierTableEvening = Cashier::getTable("13:00","22:00");
+			echo "<table>";
+			foreach($cashierTableEvening as $key => $value)
+			{
+				echo "<tr>";
+				echo "<td>".$value["cl_horario"]."</td>";
+				echo "<td> Caixa - ".$value["cl_numerocaixa"]." - ".$value["cl_nome"]."</td>";
+				echo "</tr>";
+			}
+			echo "</table>";
+		}
 	}
 ?>

@@ -2,6 +2,10 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \App\Controllers\ViewsController;
+use \App\Models\Cashier;
+use \App\Models\Cart;
+use \App\Models\Packer;
+use \App\Controllers\TableController;
 use \App\Controllers\IndexController;
 
 require '../vendor/autoload.php';
@@ -34,21 +38,22 @@ $app->post('/carrinho', function (Request $req,  Response $res, $args = []) {
     IndexController::getMethodAddEmployeeByModel($data);
     IndexController::getTable($data);
 });
+$app->get('/tabela', function (Request $req,  Response $res, $args = []) {
+    ViewsController::gettable();
+});
+$app->get('/teste', function (Request $req,  Response $res, $args = []) {
+    Cashier::showTableMorning();
+    echo "<hr>";
+    Cashier::showTableEvening();
+    echo "<hr>";
+    Cart::showTableMorning();
+    echo "<hr>";
+    Cart::showTableEvening();
+    echo "<hr>";
+    Packer::showTableMorning();
+    echo "<hr>";
+    Packer::showTableEvening();
+});
 $app->run();
 
 ?>
-<!--<?php 
-    use \Slim\Slim;
-    require "../vendor/autoload.php";
-    $app = new \Slim\Slim();
-    $app->get('/operador', function () {
-        
-    });
-    $app->get('/empacotador', function () {
-        ViewsController::getView("formpacker");
-    });
-    $app->get('/carrinho', function () {
-        ViewsController::getView("formcart");
-    });
-    $app->run();
-?>-->

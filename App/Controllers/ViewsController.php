@@ -2,13 +2,13 @@
 	namespace App\Controllers;
 	class ViewsController
 	{
-		public static function getView($formView)
+		public static function getView($view)
 		{
 			$header = "header";
 			$content = "content";
 			$formHeader = "formheader";
 			$formShift = "formShift";
-			$formView = $formView;
+			$view = $view;
 			$formFooter = "formfooter";
 			$footer = "footer";
 			$dirViewsMain = "..\\App\\Views\\";
@@ -17,9 +17,20 @@
 			require_once($dirViewsMain.$content.".phtml");
 			require_once($dirViewsForm.$formHeader.".phtml");
 			require_once($dirViewsForm.$formShift.".phtml");
-			require_once($dirViewsForm.$formView.".phtml");
+			require_once($dirViewsForm.$view.".phtml");
 			require_once($dirViewsForm.$formFooter.".phtml");
 			require_once($dirViewsMain.$footer.".phtml");
+		}
+		public static function getTable()
+		{
+			$formHeader = "formheader";
+			$dirViewsForm = "..\\App\\Views\\Forms\\";
+			require_once($dirViewsForm.$formHeader.".phtml");
+			$dirViewsTable = "..\\App\\Views\\Table\\";
+			require_once($dirViewsTable."tableHeader.phtml");
+			TableController::cashierTables();
+			require_once($dirViewsTable."tableFooter.phtml");
+
 		}
 	}
 ?>

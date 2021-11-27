@@ -20,10 +20,12 @@
 						Cashier::addEmployee($cl_horario,$cl_numerocaixa,$cl_nome);
 					break;
 					case "/empacotador":
-						Packer::addEmployee($cl_horario,$cl_nome);
+						$cl_id = $data["cl_idInput"];
+						Packer::addEmployee($cl_horario,$cl_id,$cl_nome);
 					break;
 					case "/carrinho":
-						Cart::addEmployee($cl_horario,$cl_nome);
+						$cl_id = $data["cl_idInput"];
+						Cart::addEmployee($cl_horario,$cl_id,$cl_nome);
 					break;
 					default:
 					break;

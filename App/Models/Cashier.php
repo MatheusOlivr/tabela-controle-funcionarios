@@ -22,9 +22,15 @@
 			$results = Connection::showTable("SELECT cl_horario,cl_numerocaixa,cl_nome FROM tb_cashier WHERE cl_horario BETWEEN :VALUE1 AND :VALUE2 ",$shift);
 			return $results;
 		}
-		public static function showTableMorning()
+		public static function showCashierTable()
 		{
-			$cashierTableMorning = Cashier::getTable("06:00","12:00");
+			Cashier::showTableMorning();
+		    Cashier::showTableEvening();
+		}
+		public static function showTableMorning($betweenValue1 = "06:00" ,$betweenValue2 = "12:59")
+		{
+
+			$cashierTableMorning = Cashier::getTable($betweenValue1,$betweenValue2);
 			echo "<table>";
 			foreach($cashierTableMorning as $key => $value)
 			{
@@ -35,9 +41,9 @@
 			}
 			echo "</table>";
 		}
-		public static function showTableEvening()
+		public static function showTableEvening($betweenValue1 = "13:00" ,$betweenValue2 = "22:00")
 		{
-			$cashierTableEvening = Cashier::getTable("13:00","22:00");
+			$cashierTableEvening = Cashier::getTable($betweenValue1,$betweenValue2);
 			echo "<table>";
 			foreach($cashierTableEvening as $key => $value)
 			{

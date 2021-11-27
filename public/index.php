@@ -39,7 +39,7 @@ $app->post('/carrinho', function (Request $req,  Response $res, $args = []) {
     IndexController::getTable($data);
 });
 $app->get('/tabela', function (Request $req,  Response $res, $args = []) {
-    ViewsController::gettable();
+    Packer::showTable();
 });
 $app->get('/teste', function (Request $req,  Response $res, $args = []) {
     ViewsController::getTable();

@@ -22,24 +22,11 @@
 			$results = Connection::showTable("SELECT cl_horario,cl_nome FROM tb_cart WHERE cl_horario BETWEEN :VALUE1 AND :VALUE2 ",$shift);
 			return $results;
 		}
-		public static function showTableMorning($betweenValue1 = "06:00" ,$betweenValue2 = "12:59")
+		public static function showTable($betweenValue1 = "06:00" ,$betweenValue2 = "22:00")
 		{
-			$cartTableMorning = Cart::getTable($betweenValue1,$betweenValue2);
+			$table = Cart::getTable($betweenValue1,$betweenValue2);
 			echo "<table>";
-			foreach($cartTableMorning as $key => $value)
-			{
-				echo "<tr>";
-				echo "<td>".$value["cl_horario"]."</td>";
-				echo "<td>".$value["cl_nome"]."</td>";
-				echo "</tr>";
-			}
-			echo "</table>";
-		}
-		public  static function showTableEvening($betweenValue1 = "13:00" ,$betweenValue2 = "22:00")
-		{
-			$cartTableEvening = Cart::getTable($betweenValue1,$betweenValue2);
-			echo "<table>";
-			foreach($cartTableEvening as $key => $value)
+			foreach($table as $key => $value)
 			{
 				echo "<tr>";
 				echo "<td>".$value["cl_horario"]."</td>";

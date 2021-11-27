@@ -27,25 +27,12 @@
 			Cashier::showTableMorning();
 		    Cashier::showTableEvening();
 		}
-		public static function showTableMorning($betweenValue1 = "06:00" ,$betweenValue2 = "12:59")
+		public static function showTable($betweenValue1 = "06:00" ,$betweenValue2 = "22:00")
 		{
 
-			$cashierTableMorning = Cashier::getTable($betweenValue1,$betweenValue2);
+			$table = Cashier::getTable($betweenValue1,$betweenValue2);
 			echo "<table>";
-			foreach($cashierTableMorning as $key => $value)
-			{
-				echo "<tr>";
-				echo "<td>".$value["cl_horario"]."</td>";
-				echo "<td> Caixa - ".$value["cl_numerocaixa"]." - ".$value["cl_nome"]."</td>";
-				echo "</tr>";
-			}
-			echo "</table>";
-		}
-		public static function showTableEvening($betweenValue1 = "13:00" ,$betweenValue2 = "22:00")
-		{
-			$cashierTableEvening = Cashier::getTable($betweenValue1,$betweenValue2);
-			echo "<table>";
-			foreach($cashierTableEvening as $key => $value)
+			foreach($table as $key => $value)
 			{
 				echo "<tr>";
 				echo "<td>".$value["cl_horario"]."</td>";

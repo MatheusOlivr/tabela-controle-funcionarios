@@ -28,26 +28,7 @@
 			require_once($dirViewsForm.$formHeader.".phtml");
 			$dirViewsTable = "..\\App\\Views\\Table\\";
 			require_once($dirViewsTable."tableHeader.phtml");
-			TableController::showJoinTables();
 			require_once($dirViewsTable."tableFooter.phtml");
-		}
-		public static function showCashierTable()
-		{
-			Cashier::showTableMorning();
-		    Cashier::showTableEvening();
-		}
-		public function 
-		public static function showJoinTables()
-		{
-		    echo "<hr>";
-		    Cart::showTableMorning();
-		    echo "<hr>";
-		    Cart::showTableEvening();
-		    echo "<hr>";
-		    Packer::showTableMorning();
-		    echo "<hr>";
-		    Packer::showTableEvening();
-
 		}
 	}
 ?>

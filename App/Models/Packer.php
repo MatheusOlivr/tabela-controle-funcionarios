@@ -29,7 +29,7 @@
 			foreach($table as $key => $value)
 			{
 				echo "<tr>";
-				echo "<td>".$value["cl_horario"]."</td>";
+				echo "<td class ='tableColumnShift'>".$value["cl_horario"]."</td>";
 				echo "<td>".$value["cl_nome"]."</td>";
 				echo "</tr>";
 			}

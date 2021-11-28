@@ -27,14 +27,27 @@
 		public static function showAllTablesTogether()
 		{
 			$formHeader = "formheader";
+			$tableHeader = "tableHeader";
+			$tableMorningStart = "tableMorningStart";
+			$tableMorningEnd = "tableMorningEnd";
+			$tableEveningStart = "tableEveningStart";
+			$tableEveningEnd = "tableEveningEnd";
+			$tableFooter = "tableFooter";
 			$dirViewsForm = "..\\App\\Views\\Forms\\";
 			$dirViewsTable = "..\\App\\Views\\Table\\";
 			require_once($dirViewsForm.$formHeader.".phtml");
-			require_once($dirViewsTable."tableHeader.phtml");
-			Cashier::showTable();
-			Packer::showTable();
-			Cart::showTable();
-			require_once($dirViewsTable."tableFooter.phtml");
+			require_once($dirViewsTable.$tableHeader.".phtml");
+			require_once($dirViewsTable.$tableMorningStart.".phtml");
+			Cashier::showTable("06:00","12:59");
+			Packer::showTable("06:00","12:59");
+			Cart::showTable("06:00","12:59");
+			require_once($dirViewsTable.$tableMorningEnd.".phtml");
+			require_once($dirViewsTable.$tableEveningStart.".phtml");
+			Cashier::showTable("13:00","15:00");
+			Packer::showTable("13:00","15:00");
+			Cart::showTable("13:00","15:00");
+			require_once($dirViewsTable.$tableEveningEnd.".phtml");
+			require_once($dirViewsTable.$tableFooter.".phtml");
 		}
 	}
 ?>

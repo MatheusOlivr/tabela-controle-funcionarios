@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '976bea3a3828cdd089bbb0975ca2c61363fa53af',
+        'reference' => '7f9fe5b6fa9e38026924476bbf46c4aa444264fd',
         'name' => 'matheusolivr/tabela-controle-funcionario',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '976bea3a3828cdd089bbb0975ca2c61363fa53af',
+            'reference' => '7f9fe5b6fa9e38026924476bbf46c4aa444264fd',
             'dev_requirement' => false,
         ),
         'nikic/fast-route' => array(

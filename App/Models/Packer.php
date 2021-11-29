@@ -22,6 +22,13 @@
 			$results = Connection::showTable("SELECT cl_horario,cl_nome FROM tb_packer WHERE cl_horario BETWEEN :VALUE1 AND :VALUE2 ",$shift);
 			return $results;
 		}
+		public static function showTables()
+		{
+			echo "<div class = 'table'>";
+			Packer::showTable("06:00","12:59");
+			Packer::showTable("13:00","15:00");
+			echo "</div>";
+		}
 		public static function showTable($betweenValue1 = "06:00" ,$betweenValue2 = "22:00")
 		{
 			$table = Packer::getTable($betweenValue1,$betweenValue2);

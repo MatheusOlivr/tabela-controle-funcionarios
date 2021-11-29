@@ -13,11 +13,11 @@
 			$conn = new \PDO($host,$user,$password);
 			return $conn;
 		}
-		public static function insertInTable($query,$bindParam = null)
+		public static function updateInTable($query,$bindParam = null)
 		{
 			$stmt = Connection::getDb()->prepare($query);
 			Connection::bindParams($stmt,$bindParam);	
-			$stmt->execute();
+			return $stmt->execute();
 		}
 		public static function showTable($query,$params)
 		{

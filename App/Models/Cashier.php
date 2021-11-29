@@ -5,13 +5,20 @@
 	{
 		public static function addEmployee($cl_horario,$cl_numerocaixa,$cl_nome)
 		{
-			Connection::insertInTable("UPDATE tb_cashier SET cl_horario = :CLHORARIO, cl_numerocaixa = :CLNUMEROCAIXA,cl_nome = :CLNOME WHERE cl_id = :CLNUMEROCAIXA",
-				array
-				(
-					":CLHORARIO" =>$cl_horario,
-					":CLNUMEROCAIXA" => $cl_numerocaixa,
-					":CLNOME" =>$cl_nome
-				));
+			$data = 
+			[
+				":CLHORARIO" =>$cl_horario,
+				":CLNUMEROCAIXA" => $cl_numerocaixa,
+				":CLNOME" =>$cl_nome
+			];			
+			if (Connection::updateInTable("UPDATE tb_cashier SET cl_horario = :CLHORARIO, cl_numerocaixa = :CLNUMEROCAIXA,cl_nome = :CLNOME WHERE cl_id = :CLNUMEROCAIXA",$data))
+			{	
+				echo "O/A funcionario/a ".$data[":CLNOME"]." foi adicionado com sucesso no caixa: ".$data[":CLNUMEROCAIXA"];
+			}
+			else
+			{
+				echo "Ocorreu algum erro";
+			}
 		}
 		public static function getTable($value1,$value2)
 		{

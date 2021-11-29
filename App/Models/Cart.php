@@ -5,13 +5,20 @@
 	{
 		public static function addEmployee($cl_horario,$cl_nome,$cl_id)
 		{
-			Connection::insertInTable("UPDATE tb_cart SET cl_horario =  :CLHORARIO ,cl_nome =:CLNOME WHERE cl_id = :CL_ID",
-				array
-				(
-					":CLHORARIO" =>$cl_horario,
-					":CLID" => $cl_id,
-					":CLNOME" =>$cl_nome
-				));
+			$data = 
+			[
+				":CLHORARIO" =>$cl_horario,
+				":CLNOME" =>$cl_nome,
+				":CLID" =>$cl_id
+			];			
+			if (Connection::updateInTable("UPDATE tb_cart SET cl_horario =  :CLHORARIO ,cl_nome =:CLNOME WHERE cl_id = :CLID",$data))
+			{
+				echo "O/A funcionario/a ".$data[":CLNOME"]." foi adicionado com sucesso na tabela";
+			}
+			else
+			{
+				echo "Ocorreu algum erro";
+			}
 		}
 		public static function getTable($value1,$value2)
 		{

@@ -19,6 +19,7 @@ $app->post('/operador', function (Request $req,  Response $res, $args = []) {
     $data = $req->getParsedBody();
     IndexController::getMethodAddEmployeeByModel($data);
     IndexController::getTable($data);
+    IndexController::getTableByModel($data);
 });
 $app->get('/empacotador', function (Request $req,  Response $res, $args = []) {
     ViewsController::getView("formpacker");
@@ -28,6 +29,7 @@ $app->post('/empacotador', function (Request $req,  Response $res, $args = []) {
     $data = $req->getParsedBody();
     IndexController::getMethodAddEmployeeByModel($data);
     IndexController::getTable($data);
+    IndexController::getTableByModel($data);
 });
 $app->get('/carrinho', function (Request $req,  Response $res, $args = []) {
     ViewsController::getView("formcart");
@@ -37,6 +39,7 @@ $app->post('/carrinho', function (Request $req,  Response $res, $args = []) {
     $data = $req->getParsedBody();
     IndexController::getMethodAddEmployeeByModel($data);
     IndexController::getTable($data);
+    IndexController::getTableByModel($data);
 });
 $app->get('/tabela', function (Request $req,  Response $res, $args = []) {
     ViewsController::showAllTablesTogether();

@@ -32,6 +32,27 @@
 				}
 			}
 		}
+		public static function getTableByModel($data)
+		{
+			if (isset($data["showTableButton"]))
+			{
+				$getPath = IndexController::getUrl();
+				switch($getPath)
+				{
+					case "/operador":
+						Cashier::showTables();
+					break;
+					case "/empacotador":
+						Packer::showTables();
+					break;
+					case "/carrinho":
+						Cart::showTables();
+					break;
+					default:
+					break;
+				}
+			}		
+		}
 		public static function getTable($data)
 		{
 			if(isset($data["showTableButton"]))

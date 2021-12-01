@@ -3,35 +3,44 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<style>
 		*
 		{
 			padding: 0;
 			margin: 0;
 			font-family: roboto;
-			font-size: 1.04em;
 		}
 		#areaContent
 		{
 			height: 100vh;
 			display: flex;
+			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+		}
+		#areaOfProject
+		{
+			display: flex;
+			border-radius: 3vw;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			width: 40vw;
+			border: solid 1vw black;
+			background-color:#fc6f03;
 		}
 		#areaHeader
 		{
 			display: flex;
 			justify-content: center;
-			width: 41vw;
+			border-radius: 0vw 0vw 2vw 2vw;
 			background-color: black;
+			border: 1px solid black;
 			flex-wrap: wrap;
-
-		}
-		#headerMenu
-		{
+			font-size: 1.2em;
 		}
 		li
 		{
@@ -42,21 +51,39 @@
 			display: block;
 			text-decoration: none;
 			color: white;
-			padding: 1vw;
+			padding: 1.2vw;
 		}
 		.headerMenu__a:hover
 		{
 			background-color: white;
+			border-radius: 0vw 0vw 2vw 2vw;
 			color: black;
 		}
-		#areaOfProject
+		#areaForm
 		{
-			display: flex;
-			flex-direction: column;
-			align-items: center;
+			padding: 1vw;
+		}
+		.form__label,
+		.form__select,
+		.form__input,
+		.form__button
+		{
+			margin: 1vw 0vw;
+			width: 30vw;
+			height: 6vh;
+			font-size:1.6em;
+			font-weight: 500;
 			text-align: center;
-			width: 40vw;
-			border: solid 1vw black;
+		}
+		.form__button
+		{
+			margin: 0.1vw 0vw;
+			background-color: white;
+			cursor: pointer;
+			border: 0.2vw solid black;
+		}
+		.form__button:hover
+		{
 			background-color:#fc6f03;
 		}
 	</style>

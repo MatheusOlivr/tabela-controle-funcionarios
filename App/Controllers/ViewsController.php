@@ -5,24 +5,34 @@
 	use App\Models\Cart;
 	class ViewsController
 	{
-		public static function getView($view)
+		public static function getView($formContent = null)
 		{
 			$header = "header";
 			$content = "content";
-			$formHeader = "formheader";
-			$formShift = "formShift";
-			$view = $view;
-			$formFooter = "formfooter";
 			$footer = "footer";
 			$dirViewsMain = "..\\App\\Views\\";
-			$dirViewsForm = "..\\App\\Views\\Forms\\";
 			require_once($dirViewsMain.$header.".phtml");
 			require_once($dirViewsMain.$content.".phtml");
+			if ($formContent !== null)
+			{
+				ViewsController::getViewsForm($formContent);
+			}
+			else
+			{
+				
+			}
+			require_once($dirViewsMain.$footer.".phtml");
+		}
+		public static function getViewsForm($formContent)
+		{
+			$formHeader = "formheader";
+			$formShift = "formShift";
+			$formFooter = "formfooter";
+			$dirViewsForm = "..\\App\\Views\\Forms\\";
 			require_once($dirViewsForm.$formHeader.".phtml");
 			require_once($dirViewsForm.$formShift.".phtml");
-			require_once($dirViewsForm.$view.".phtml");
+			require_once($dirViewsForm.$formContent.".phtml");
 			require_once($dirViewsForm.$formFooter.".phtml");
-			require_once($dirViewsMain.$footer.".phtml");
 		}
 		public static function showAllTablesTogether()
 		{

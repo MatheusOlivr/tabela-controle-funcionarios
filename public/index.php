@@ -11,6 +11,11 @@ use \App\Controllers\IndexController;
 require '../vendor/autoload.php';
 
 $app = new \Slim\App;
+$app->get('/', function (Request $req,  Response $res, $args = []) {
+    echo "<h3>O QUE VOCÊ DESEJA ACESSAR:</h3>";
+    echo "<br></br>";
+    ViewsController::getView();
+});
 $app->get('/operador', function (Request $req,  Response $res, $args = []) {
     ViewsController::getView("formcashier");
 });

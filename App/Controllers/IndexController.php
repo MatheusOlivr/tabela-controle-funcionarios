@@ -3,6 +3,7 @@
 	use App\Models\Cashier;
 	use App\Models\Packer;
 	use App\Models\Cart;
+	use App\Models\Index;
 	use App\Controllers\TableController;
 	class IndexController
 	{
@@ -65,6 +66,17 @@
 			$getUrl = $_SERVER["REQUEST_URI"];
 			$getUrl = parse_url($getUrl,PHP_URL_PATH);
 			return $getUrl;
+		}
+		public static function trucanteTables($post)
+		{
+			if (isset($post["truncateTableButton"]))
+			{
+				Index::truncateTable();
+			}
+			else
+			{
+				echo "Não foi";
+			}
 		}
 	}
 ?>

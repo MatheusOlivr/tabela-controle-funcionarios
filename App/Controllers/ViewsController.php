@@ -19,7 +19,7 @@
 			}
 			else
 			{
-				
+				require_once("..\\App\\Views\\forms\\"."index.phtml");
 			}
 			require_once($dirViewsMain.$footer.".phtml");
 		}

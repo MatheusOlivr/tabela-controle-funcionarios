@@ -16,6 +16,13 @@ $app->get('/', function (Request $req,  Response $res, $args = []) {
     echo "<br></br>";
     ViewsController::getView();
 });
+$app->post('/', function (Request $req,  Response $res, $args = []) {
+    $post = $req->getParsedBody();
+    echo "<h3>O QUE VOCÊ DESEJA ACESSAR:</h3>";
+    echo "<br></br>";
+    ViewsController::getView();
+    IndexController::trucanteTables($post);
+});
 $app->get('/operador', function (Request $req,  Response $res, $args = []) {
     ViewsController::getView("formcashier");
 });

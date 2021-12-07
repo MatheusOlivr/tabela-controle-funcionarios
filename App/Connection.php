@@ -19,6 +19,16 @@
 			Connection::bindParams($stmt,$bindParam);	
 			return $stmt->execute();
 		}
+		public static function insert($query)
+		{
+			$stmt = Connection::getDb()->prepare($query);
+			return $stmt->execute();
+		}
+		public static function truncate($query)
+		{
+			$stmt = Connection::getDb()->prepare($query);
+			return $stmt->execute();
+		}
 		public static function showTable($query,$params)
 		{
 			$stmt = Connection::getDb()->prepare($query);
